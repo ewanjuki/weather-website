@@ -37,4 +37,16 @@ app.get("/weather", (req, res) => {
   res.send({ location: "Nairobi", forecast: "25degrees" });
 });
 
+app.get("/help/*", (req, res) =>
+  res.render("404", {
+    title: "404",
+    error: "Help article not found.",
+    name: "Edwin",
+  })
+);
+
+app.get("*", (req, res) =>
+  res.render("404", { title: "404", error: "Page not found.", name: "Edwin" })
+);
+
 app.listen(3000, () => console.log("Server running"));
