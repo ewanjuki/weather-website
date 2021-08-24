@@ -34,7 +34,12 @@ app.get("/help", (req, res) =>
 );
 
 app.get("/weather", (req, res) => {
-  res.send({ location: "Nairobi", forecast: "25degrees" });
+  if (!req.query.address) {
+    return res.send({ error: "Please provide an address" });
+  }
+  
+  const address = req.query.address
+  res.send({ location: address, forecast: "25degrees" });
 });
 
 app.get("/help/*", (req, res) =>
